@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "bluebird": "^3.5.1",
+    "cors": "^2.8.4",
     "lodash": "^4.17.4",
     "mongoose": "^4.12.4",
     "react": "^16.0.0",
