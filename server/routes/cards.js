@@ -26,7 +26,7 @@ module.exports.getFullText = (req, res) => {
       });
 
       let answer = fullText.join("");
-      answer = answer.replace(/\<\/?(br|i)\>|\&(reg|trade)\;/g, " ").trim();
+      answer = answer.replace(/<\/?i>|&(reg|trade);/g, " ").trim();
       if (answer.charAt(0).toLowerCase()) {
         answer = answer.charAt(0).toUpperCase() + answer.slice(1);
       }
