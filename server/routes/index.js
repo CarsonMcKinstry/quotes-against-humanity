@@ -39,11 +39,8 @@ module.exports = app => {
         ) {
           answer = answer + ".";
         }
-        const answerLength = answer.length;
-        console.log(answer);
         res.json({
           answer: answer,
-          answerLength: answerLength,
           blackCard: blackCard[0],
           whiteCards: whiteCards
         });
