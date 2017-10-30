@@ -1,18 +1,36 @@
 import React, { Component } from "react";
-import logo from "../assets/logo.svg";
+import * as api from "../api/cards";
+import Cards from "./Cards";
 import "./App.scss";
+import { get } from "lodash";
+import twitter from "../assets/twitter.svg";
 
 class App extends Component {
   render() {
+    const getNewCards = () => {
+      api.getCards().then(data => {
+        const black = get(data.data, "blackCard")[0];
+        const white = get(data.data, "whiteCards");
+
+        this.setState({ cards: { black, white } });
+      });
+    };
+
     return (
       <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
+        <h1 className="App-heading">Quotes Against Humanity</h1>
+        <div className="follow-badge">
+          <a href="" tareget="_blank">
+            <img className="twitter" src={twitter} alt="" />
+            @TweetsAHumanity
+          </a>
+        </div>
+        <div className="shuffle-btn-container">
+          <button className="shuffle-btn" onClick={getNewCards}>
+            Shuffle
+          </button>
+        </div>
+        <Cards cards={this.state ? this.state.cards : undefined} />
       </div>
     );
   }
